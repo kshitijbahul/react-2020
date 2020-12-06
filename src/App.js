@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component{
+  //Need to use the constructor to set the State
+  constructor(){
+    super();
+    this.state = {
+      string: "Hello KB"
+    }
+  }
   render(){
     return (
       <div className="App">
@@ -17,7 +24,7 @@ class App extends Component{
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            {this.state.string}
           </a>
         </header>
       </div>
