@@ -19,9 +19,6 @@ class App extends Component{
     return (
       <div className="App">
         <CardList name="Kshitij" someProp="prop">
-          <h1>This is Child Prop ?</h1>  
-        </CardList>
-
         {
           this.state.mosters.map(monster => 
             (
@@ -29,6 +26,7 @@ class App extends Component{
             )
           )
         }
+        </CardList>
       </div>
     );
   }
