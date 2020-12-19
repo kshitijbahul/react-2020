@@ -11,14 +11,17 @@ class App extends Component{
       monsters: [],
       searchField : ''
     }
+    this.handleChange = this.handleChange.bind(this); // We wre here binding the this keyword with the this keyword in the handlechange function
+    //this has been set for us here since we called super() and react did some work for us
+    //then the question really becomes functions v/s Arrow functions
   }
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then(users => this.setState({ monsters: users }));
   }
-  onSearch(e) {
-    
+  handleChange(e) {
+    this.setState({searchField: e.target.value}); // This line here without setting context in the constructor will show this as undefined
   }
 
   render(){
@@ -31,7 +34,7 @@ class App extends Component{
     const filteredMonsters  = monsters.filter(eachMonster => eachMonster.name.toLowerCase().includes(searchField.toLowerCase()));
     return (
       <div className="App">
-        <SearchBox placeHolder='Filter monsters' handleChange={e=> this.setState({searchField: e.target.value})}/>
+        <SearchBox placeHolder='Filter monsters' handleChange={this.handleChange}/>
         <CardList monsters={filteredMonsters}/>
       </div>
     );
