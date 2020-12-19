@@ -11,16 +11,19 @@ class App extends Component{
       monsters: [],
       searchField : ''
     }
-    this.handleChange = this.handleChange.bind(this); // We wre here binding the this keyword with the this keyword in the handlechange function
+    // this.handleChange = this.handleChange.bind(this); // We wre here binding the this keyword with the this keyword in the handlechange function
     //this has been set for us here since we called super() and react did some work for us
     //then the question really becomes functions v/s Arrow functions
+    //If we have the arrow function , JS binds the "this" context to the place where they were defined in the first place
+    // Hence the arrow functions are prefered
+    // This is called lexical scoping, since this is bound to where the function is defined, in our case the App class
   }
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then(users => this.setState({ monsters: users }));
   }
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({searchField: e.target.value}); // This line here without setting context in the constructor will show this as undefined
   }
 
